@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { GrFormNext, GrFormPin, GrFormPrevious } from "react-icons/gr";
+import UserForm from "./components/UserForm";
+import ReviewForm from "./components/ReviewForm";
+import Thanks from "./components/Thanks";
+
+//hooks
+import { useForm } from "./hooks/UserForm";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const formComponents = [<UserForm />, <ReviewForm />, <Thanks />];
+
+  const { currentStep, currentComponent } = useForm(formComponents);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <div className="App">
+      <div className="header">
+        <h2>nos avalie</h2>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Ficamos gratos com a sua compra, responda esse formulário abaixo para
+          avaliar
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="form-container">
+        <p>etapas</p>
+        <form action="" className="actions">
+          <div className="inputs-container">{currentComponent}</div>
+          <button type="button">
+            <GrFormPrevious />
+            <span> Voltar</span>
+          </button>
+          <button type="submit">
+            <GrFormNext />
+            <span>Avançar</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
