@@ -7,6 +7,7 @@ import Thanks from "./components/Thanks";
 
 //hooks
 import { useForm } from "./hooks/UserForm";
+import Steps from "./components/Steps";
 
 function App() {
   const formComponents = [<UserForm />, <ReviewForm />, <Thanks />];
@@ -15,7 +16,7 @@ function App() {
     useForm(formComponents);
 
   return (
-    <div className="App">
+    <div className="app">
       <div className="header">
         <h2>nos avalie</h2>
         <p>
@@ -24,7 +25,7 @@ function App() {
         </p>
       </div>
       <div className="form-container">
-        <p>etapas</p>
+        <Steps currentStep={currentStep} />
         <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
           <div className="inputs-container">{currentComponent}</div>
           <div className="actions">
